@@ -1,0 +1,6 @@
+gdown
+tensorflow-text
+tensorflow==2.8.0
+fastapi
+pydantic
+uvicorn[standard]
