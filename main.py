@@ -8,6 +8,7 @@ from fastapi import FastAPI, Response, status
 from pydantic import BaseModel
 import uvicorn
 import numpy as np
+import traceback
 
 # Init priority instances
 model = tf.saved_model.load("./saved_model")
@@ -39,9 +40,9 @@ async def predict(req: RequestText, response: Response):
             "is_negative": is_negative
         }
     except Exception as e:
-        print(e)
+        traceback.print_exc()
         response.status_code = 500
-        return "Internal Server Error"
+        return {"message" : "Internal Server Error"} 
     
 port = 8001
 print(f"Listening to http://0.0.0.0:{port}")
